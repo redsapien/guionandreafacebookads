@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Guion · Johana Álvarez · Claro Fibra 900</title>
+    <style>
+        /* Reset y fuente premium */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0c0b14;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Fondo mágico: estrellas y fibras de luz */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(155, 90, 255, 0.15) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(255, 90, 200, 0.15) 0%, transparent 40%),
+                        repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 8px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Efecto de líneas de fibra óptica animadas */
+        .fibra-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.4;
+        }
+
+        .fibra-lines span {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, #ff66cc, #aa88ff, transparent);
+            height: 2px;
+            width: 100%;
+            filter: blur(3px);
+            animation: flow 8s linear infinite;
+        }
+
+        .fibra-lines span:nth-child(1) { top: 15%; animation-duration: 12s; opacity: 0.5; }
+        .fibra-lines span:nth-child(2) { top: 45%; animation-duration: 9s; opacity: 0.4; transform: rotate(2deg); }
+        .fibra-lines span:nth-child(3) { top: 75%; animation-duration: 15s; opacity: 0.6; }
+        .fibra-lines span:nth-child(4) { top: 90%; animation-duration: 7s; opacity: 0.3; width: 80%; left: 10%; }
+        .fibra-lines span:nth-child(5) { top: 30%; animation-duration: 18s; opacity: 0.4; width: 70%; left: 15%; }
+
+        @keyframes flow {
+            0% { transform: translateX(-100%) scaleX(0.5); opacity: 0; }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.6; }
+            100% { transform: translateX(100%) scaleX(1.5); opacity: 0; }
+        }
+
+        /* Tarjeta sagrada: el guion */
+        .guion-sagrado {
+            position: relative;
+            z-index: 10;
+            max-width: 720px;
+            width: 100%;
+            background: rgba(18, 15, 30, 0.75);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 64px 64px 48px 48px;
+            padding: 48px 40px 56px 40px;
+            border: 1px solid rgba(255, 180, 215, 0.25);
+            box-shadow: 0 40px 70px -20px rgba(0,0,0,0.9),
+                        0 0 0 1px rgba(255, 200, 235, 0.15) inset,
+                        0 0 60px rgba(210, 130, 255, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .guion-sagrado:hover {
+            transform: scale(1.005);
+            box-shadow: 0 45px 80px -15px #000, 0 0 0 2px rgba(255, 150, 230, 0.3) inset, 0 0 80px #cc88ff;
+        }
+
+        /* Cabecera espiritual */
+        .header-espiritual {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .chica-paisa {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .avatar-luz {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(145deg, #ffa3d2, #b47aff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: 700;
+            color: #0e0b1a;
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3), 0 0 50px #ffa0eb;
+            text-shadow: 2px 2px 0 rgba(255,255,240,0.7);
+            animation: pulso 3s infinite alternate;
+        }
+
+        @keyframes pulso {
+            0% { box-shadow: 0 0 0 4px rgba(255, 180, 220, 0.6), 0 0 30px #f062e0; }
+            100% { box-shadow: 0 0 0 6px rgba(255, 140, 240, 0.9), 0 0 70px #ffb3ff; }
+        }
+
+        .nombre-medallo h2 {
+            color: white;
+            font-size: 34px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #fff7d0, #ffdbff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        .nombre-medallo p {
+            color: #cfb0ff;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sello-medallo {
+            background: #221d3a;
+            border: 1px solid #f9c0ff;
+            border-radius: 60px;
+            padding: 12px 28px;
+            color: #ffddbb;
+            font-weight: 600;
+            font-size: 18px;
+            letter-spacing: 1px;
+            box-shadow: 0 0 20px #d5a2ff;
+            backdrop-filter: blur(5px);
+        }
+
+        .sello-medallo span {
+            color: gold;
+            margin-right: 8px;
+        }
+
+        /* Título central: "EL GUIÓN" */
+        .titulo-guion {
+            text-align: center;
+            margin: 30px 0 25px 0;
+            position: relative;
+        }
+
+        .titulo-guion h1 {
+            font-size: 68px;
+            font-weight: 900;
+            background: linear-gradient(165deg, #ffffff, #ffd6f0, #e1b2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px #ffa0f0;
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+
+        .titulo-guion p {
+            color: #b59ed6;
+            font-size: 22px;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        /* El guion en sí: líneas sagradas */
+        .lineas-guion {
+            background: rgba(10, 5, 25, 0.6);
+            border-radius: 48px;
+            padding: 40px 32px;
+            border: 1px solid #ffb3d980;
+            box-shadow: 0 25px 40px -20px black, 0 0 30px #ff9cf0 inset;
+            margin: 30px 0 30px 0;
+        }
+
+        .escena {
+            font-size: 20px;
+            font-weight: 500;
+            color: #e0b0ff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            border-left: 5px solid #ffa6dc;
+            padding-left: 20px;
+        }
+
+        .parlamento {
+            margin-bottom: 32px;
+            position: relative;
+            padding-left: 24px;
+            border-left: 2px dashed rgba(255, 190, 230, 0.6);
+        }
+
+        .parlamento:last-child {
+            margin-bottom: 0;
+        }
+
+        .tiempo {
+            display: inline-block;
+            background: #322b4b;
+            border-radius: 30px;
+            padding: 5px 18px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffccb0;
+            margin-bottom: 12px;
+            border: 1px solid #ff90c0;
+            box-shadow: 0 0 10px #ffa0d0;
+        }
+
+        .texto-johana {
+            font-size: 28px;
+            line-height: 1.4;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 500;
+            word-break: break-word;
+        }
+
+        .texto-johana strong {
+            color: #ffdb9f;
+            font-weight: 700;
+            text-shadow: 0 0 8px #ffaeff;
+        }
+
+        .texto-johana i {
+            color: #b0e0ff;
+            font-style: italic;
+        }
+
+        .nota-accion {
+            font-size: 20px;
+            color: #cfaaff;
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nota-accion span {
+            background: #2f2650;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 18px;
+            border: 1px solid #ffb6e1;
+        }
+
+        /* footer energético */
+        .footer-energia {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            color: #b49cd9;
+            font-size: 18px;
+            border-top: 1px solid #504480;
+            padding-top: 28px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-energia div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .frase-chimba {
+            background: linear-gradient(145deg, #ffb8de, #c395ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            font-size: 24px;
+            text-align: right;
+        }
+
+        /* Responsive perfecto */
+        @media (max-width: 550px) {
+            .guion-sagrado {
+                padding: 30px 20px 40px 20px;
+                border-radius: 40px;
+            }
+            .texto-johana {
+                font-size: 22px;
+            }
+            .titulo-guion h1 {
+                font-size: 48px;
+            }
+            .nombre-medallo h2 {
+                font-size: 26px;
+            }
+            .sello-medallo {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Líneas de fibra místicas -->
+    <div class="fibra-lines">
+        <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <!-- CONTENEDOR ÚNICO: EL GUIÓN -->
+    <div class="guion-sagrado">
+        <!-- Identidad de Johana (pura esencia paisa) -->
+        <div class="header-espiritual">
+            <div class="chica-paisa">
+                <div class="avatar-luz">J</div>
+                <div class="nombre-medallo">
+                    <h2>JOHANA ÁLVAREZ</h2>
+                    <p>⚡ la voz de Medallo · asesora digital</p>
+                </div>
+            </div>
+            <div class="sello-medallo">
+                <span>🔥</span> SERIEDAD Y CUMPLIMIENTO
+            </div>
+        </div>
+
+        <!-- Título divino del guion -->
+        <div class="titulo-guion">
+            <h1>EL GUIÓN</h1>
+            <p>✨ 39 segundos · testimonio que convierte ✨</p>
+        </div>
+
+        <!-- CUERPO SAGRADO DEL GUIÓN (solo las líneas, sin precios ni nada más) -->
+        <div class="lineas-guion">
+            <!-- escena 1 -->
+            <div class="escena">🎬 MEDELLÍN · LUZ NATURAL · JOHANA MIRA A CÁMARA</div>
+
+            <div class="parlamento">
+                <div class="tiempo">⏱️ 0:00 - 0:08 (8 seg)</div>
+                <div class="texto-johana">
+                    “<strong>Parce</strong>, ¿usted está pagando más de 100 lucas por un internet que <i>no le llega a toda la casa</i>? Yo le traje la solución, ¡literal!”
+                </div>
+                <div class="nota-accion"><span>🎯 acción</span> sonrisa, ceja levantada</div>
+            </div>
+
+            <div class="parlamento">
+                <div class="tiempo">⏱️ 0:08 - 0:18 (10 seg)</div>
+                <div class="texto-johana">
+                    “<strong>Claro Fibra Óptica, 900 megas</strong>. El primer mes se lo dejo en <strong>37 lucas con 400</strong>. Sí, poquito más de 30. <i>Instalación incluida en ese precio</i>.”
+                </div>
+                <div class="nota-accion"><span>✋</span> mostrar dedos, energía</div>
+            </div>
+
+            <div class="parlamento">
+                <div class="tiempo">⏱️ 0:18 - 0:30 (12 seg)</div>
+                <div class="texto-johana">
+                    “Y como yo sé que <strong>usted es de los míos</strong>, si ya tiene el internet conmigo, le tengo los combos de streaming más baratos que los de su amigo: <strong>Netflix, Disney, Win+</strong>. ¡Pura calidad, sin trabas!”
+                </div>
+                <div class="nota-accion"><span>🤫</span> tono confidente, se acerca</div>
+            </div>
+
+            <div class="parlamento">
+                <div class="tiempo">⏱️ 0:30 - 0:39 (9 seg)</div>
+                <div class="texto-johana">
+                    “Mire, yo soy <strong>Johana Álvarez</strong>. Pregúnteme aquí abajo o al WhatsApp, le ayudo a ahorrar desde ya. <strong>¡Pilas pues, que las ofertas vuelan!</strong>”
+                </div>
+                <div class="nota-accion"><span>👇</span> señala hacia abajo, guiño final</div>
+            </div>
+        </div>
+
+        <!-- footer con energía paisa y llamada a la acción invisible (solo para ella) -->
+        <div class="footer-energia">
+            <div>
+                <span style="font-size: 32px;">📿</span>
+                <span>voz auténtica · 39 seg · fibra espiritual</span>
+            </div>
+            <div class="frase-chimba">
+                “de mero Medallo”
+            </div>
+        </div>
+
+        <!-- Un detalle sutil: la velocidad de la fibra en el alma -->
+        <div style="text-align: center; margin-top: 25px; color: #b391d0; font-size: 15px; border-top: 1px dashed #5d4b8c; padding-top: 20px;">
+            ⚡ ESTE GUIÓN ES SAGRADO · GRÁBALO CON EL ALMA · LA OFERTA VUELA ⚡
+        </div>
+    </div>
+</body>
+</html>
